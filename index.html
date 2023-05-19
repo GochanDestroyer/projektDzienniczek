@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dziennik praktyki zawodowej</title>
+    <script src="teachingProgram.js" defer></script>
+    <script src="app.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <h1 class="header__title">Dziennik praktyki zawodowej</h1>
+        <ul class="navigation">
+            <li class="navigation__item">Metryczka</li>
+            <li class="navigation__item">Dziennik zajęć</li>
+            <li class="navigation__item">Podsumowanie</li>
+        </ul>
+        <div class="header__hamburger-icon">
+            <span class="hamburger-icon__element hamburger-icon__element1"></span>
+            <span class="hamburger-icon__element hamburger-icon__element2"></span>
+            <span class="hamburger-icon__element hamburger-icon__element3"></span>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="weather">
+            <p class="weather-city"></p>
+        </div>
+        <div class="view">
+            <h2 class="title">Wprowadź dane ucznia i praktyki</h2>
+            <form class="view__element">
+                <div class="form__wrapper">
+                    <label for="name" class="wrapper__element">Imię: <input type="text" class="input-text" id="name"></label>
+                    <label for="surname" class="wrapper__element">Nazwisko: <input type="text" class="input-text" id="surname"></label>
+                </div>
+                <div class="form__wrapper">
+                    <label for="class" class="wrapper__element">Klasa: <input type="text" class="input-text" id="class"></label>
+                    <label for="school-year" class="wrapper__element">Rok szkolny: <input type="text" class="input-text" id="school-year"></label>
+                </div>
+                <div class="form__wrapper">
+                    <label for="did-in" class="element__label wrapper__element">Odbytej w: <input type="text" class="input-text" id="did-in"></label>
+                </div>
+                <div class="form__wrapper">
+                    <label for="date-of-start" class="wrapper__element">Data rozpoczęcia: <input type="date" required class="input-date" id="date-of-start"></label>
+                    <label for="date-of-end" class="wrapper__element">Data zakończenia: <input type="date" required class="input-date" id="date-of-end"></label>
+                </div>
+                <div class="buttons-wrapper">
+                    <input type="reset" class="button button--red" value="Wyczyść">
+                    <input type="submit" class="button button--green" value="Zatwierdź" id="confirm">
+                </div>
+            </form>
+        </div>
+
+        <div class="view" style="display: none;">
+            <h2 class="title element__title">Wprowadź nowe zajęcia</h2>
+            <form class="view__element">
+                <h3 class="form-title">Informacje o zajęciach</h3>
+                <div class="form__wrapper">
+                    <label for="lessons-date" class="wrapper__element">Wybierz datę zajęć:
+                        <input type="date" id="lessons-date" required>
+                    </label>
+                </div>
+                <div class="form__wrapper">
+                    <label for="section" class="wrapper__element">Wybierz dział:
+                        <select id="section-select"></select>
+                    </label>
+                </div>
+                <div class="form__wrapper">
+                    <label for="topic" class="wrapper__element">Wybierz temat:
+                        <select id="topic-select"></select>
+                    </label>
+                </div>
+                <h3 class="form-title">Opiekun</h3>
+                <div class="form__wrapper">
+                    <label for="superviser1" class="wrapper__element"><input type="radio" name="superviser" id="superviser1" value="Jerzy Kot">Jerzy Kot</label>
+                    <label for="superviser2" class="wrapper__element"><input type="radio" name="superviser" id="superviser2" value="Maria Nowak">Maria Nowak</label>
+                    <label for="superviser3" class="wrapper__element"><input type="radio" name="superviser" id="superviser3" value="Konstanty Kowal">Konstanty Kowal</label>
+                </div>
+                <h3 class="form-title">Realizacja materiału</h3>
+                <div class="form__wrapper">
+                    <label for="report" class="textarea-label wrapper__element">Sprawozdanie: <textarea id="report" class="textarea" cols="30" rows="10"></textarea></label>
+                    <label for="realized" class="label-align-center wrapper__element">Zrealizowano: <input type="checkbox" id="realized"></label>
+                </div>
+                <div class="form__wrapper">
+                    <label for="hours" class="label-align-center wrapper__element">Ile godzin: <input type="number" class="input-number" id="hours"></label>
+                    <label for="grade" class="label-align-center wrapper__element">Stopień opanowania materiału: 1<input type="range" id="grade" min="1" max="6">6</label>
+                </div>
+                <div class="buttons-wrapper">
+                    <input type="reset" class="button button--red" value="Wyczyść">
+                    <input type="submit" class="button button--green" value="Dodaj" id="add">
+                </div>
+            </form>
+            <div class="view__element">
+                <h2 class="title element__title">Zrealizowane tematy</h2>
+                <div class="topics"></div>
+            </div>
+        </div>
+
+        <div class="view" style="display: none;">
+            <table class="summary-table">
+                <tr>
+                    <th class="tableCell">Nazwa modułu</th>
+                    <th class="tableCell">Ilość godzin zrealizowanych</th>
+                </tr>
+            </table>
+            <p class="to-realize"></p>
+            <p class="proposed-grade">Przewidywana ocena: </p>
+        </div>
+
+        <div class="view" style="display: none;">
+            <div class="view__element">
+                <h2 class="title element__title">Dane ucznia</h2>
+                <p class="element__paragraph">Imię: <span class="span-name"></span></p>
+                <p class="element__paragraph">Nazwisko: <span class="span-surname"></span></p>
+                <p class="element__paragraph">Klasa: <span class="span-class"></span>, rok szkolny: <span class="span-school-year"></span></p>
+                <p class="element__paragraph">Odbytej w: <span class="span-did-in"></span></p>
+                <p class="element__paragraph">W terminie: od <span class="span-from"></span> do <span class="span-to"></span></p>
+                <div class="buttons-wrapper">
+                    <input type="button" class="button button--green" id="edit" value="Edytuj">
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <p class="footer__text">© Copyright by Małgorzata Dziewior 2023</p>
+    </footer>
+</body>
+</html>
